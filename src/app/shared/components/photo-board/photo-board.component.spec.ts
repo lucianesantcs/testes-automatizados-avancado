@@ -1,24 +1,10 @@
 import { SimpleChange, SimpleChanges } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { Photo } from "./interfaces/photo";
 import { PhotoBoardComponent } from "./photo-board.component";
 import { PhotoBoardModule } from "./photo-board.module";
 
-// função que cria uma lista com as mesmas propriedades
-// dos dados vindo da api, sem necessidade de chamá-la
-function buildPhotoList(): Photo[] { 
-  const photos: Photo[] = [];
-  for(let index = 0; index < 8; index++) {
-    photos.push({
-      id: index + 1,
-      url: '',
-      description: ''
-    });
-
-  }
-
-  return photos;
-}
+// extraída função para ser reutilizada em outros testes
+import { buildPhotoList } from "./test/build-photo-list"; 
 
 describe(PhotoBoardComponent.name, () => {
   let fixture: ComponentFixture<PhotoBoardComponent>;
