@@ -12,7 +12,6 @@ export class PhotoFrameComponent implements OnInit, OnDestroy {
     @Input() public description = '';
     @Input() public src = '';
     @Input() public likes = 0;
-    @Output() public liked = new EventEmitter<void>();
     private debounceSubject = new Subject<void>();
     private unsubscribe = new Subject<void>();
 
@@ -32,6 +31,6 @@ export class PhotoFrameComponent implements OnInit, OnDestroy {
         .asObservable()
         .pipe(debounceTime(500))
         .pipe(takeUntil(this.unsubscribe))
-        .subscribe(() => this.liked.emit());
+        .subscribe(() => this.likes++);
     }
 }
